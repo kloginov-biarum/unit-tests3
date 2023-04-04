@@ -1,5 +1,7 @@
 import java.util.Locale;
 
+import static java.lang.Math.round;
+
 public class Cost {
     public double deliveryCostCalc(double distance, boolean big, boolean fragile, String load ){
         double minCost = 400;
@@ -44,7 +46,7 @@ public class Cost {
         else {
             throw new IllegalArgumentException("Некорректное значение аргумента fragile. Допустимо true  или false");
         }
-        loadValue.toLowerCase(Locale.ROOT);
+        loadValue = loadValue.toLowerCase(Locale.ROOT);
         switch (loadValue){
             case ("высокая"):
                 finalCost*=1.4;
@@ -56,9 +58,10 @@ public class Cost {
                 finalCost*=1.2;
                 break;
         }
+        System.out.println("finalCost after loadValue: "+ finalCost);
         if (finalCost < minCost){
             finalCost = minCost;
         }
-        return finalCost;
+        return round(finalCost);
     }
 }
